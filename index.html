@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MSP STONE INTERNATIONAL</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#0b0b0b;
+color:white;
+overflow-x:hidden;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:linear-gradient(#d4af37,#ffffff);
+border-radius:20px;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+width:92%;
+padding:18px 40px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.08);
+border-radius:20px;
+z-index:999;
+}
+
+.logo{
+font-size:26px;
+font-family:'Cinzel',serif;
+font-weight:700;
+color:#fff;
+}
+
+nav ul{
+display:flex;
+gap:35px;
+list-style:none;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+transition:0.3s;
+font-size:15px;
+}
+
+nav ul li a:hover{
+color:#d4af37;
+}
+
+/* HERO */
+
+.hero{
+height:100vh;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+background:
+linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.85)),
+url('fountain.jpg');
+background-size:cover;
+background-position:center;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:100%;
+height:100%;
+background:radial-gradient(circle at center,transparent,rgba(0,0,0,0.9));
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:900px;
+text-align:center;
+padding:20px;
+}
+
+.hero-content h1{
+font-size:75px;
+font-family:'Cinzel',serif;
+line-height:1.1;
+margin-bottom:25px;
+background:linear-gradient(to right,#ffffff,#d4af37);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero-content p{
+font-size:20px;
+color:#ddd;
+margin-bottom:40px;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:16px 35px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+transition:0.4s;
+}
+
+.btn-gold{
+background:linear-gradient(to right,#d4af37,#f7e7b4);
+color:black;
+}
+
+.btn-dark{
+border:1px solid rgba(255,255,255,0.2);
+color:white;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(10px);
+}
+
+.btn:hover{
+transform:translateY(-5px);
+}
+
+/* SECTION */
+
+section{
+padding:110px 8%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:70px;
+}
+
+.section-title h2{
+font-size:52px;
+font-family:'Cinzel',serif;
+margin-bottom:15px;
+}
+
+.section-title p{
+max-width:700px;
+margin:auto;
+color:#bbb;
+}
+
+/* FOUNTAIN SECTION */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.card{
+position:relative;
+height:450px;
+overflow:hidden;
+border-radius:28px;
+cursor:pointer;
+transition:0.5s;
+}
+
+.card img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:0.6s;
+}
+
+.card:hover img{
+transform:scale(1.1);
+}
+
+.card::after{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(to top,rgba(0,0,0,0.9),transparent);
+}
+
+.card-content{
+position:absolute;
+bottom:30px;
+left:30px;
+z-index:2;
+}
+
+.card-content h3{
+font-size:32px;
+font-family:'Cinzel',serif;
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:10000;
+padding:30px;
+}
+
+.lightbox img{
+width:70%;
+max-width:900px;
+border-radius:30px;
+animation:zoom 0.5s ease;
+}
+
+@keyframes zoom{
+from{
+transform:scale(0.6);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+/* WASHBASIN */
+
+.wash-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.wash-card{
+background:#111;
+border-radius:25px;
+overflow:hidden;
+transition:0.5s;
+cursor:pointer;
+}
+
+.wash-card:hover{
+transform:translateY(-10px);
+}
+
+.wash-card img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+
+.wash-content{
+padding:25px;
+}
+
+.wash-content h3{
+font-size:26px;
+margin-bottom:10px;
+font-family:'Cinzel',serif;
+}
+
+/* ABOUT */
+
+.about{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:60px;
+align-items:center;
+}
+
+.about img{
+width:100%;
+border-radius:30px;
+}
+
+.about h3{
+font-size:45px;
+margin-bottom:20px;
+font-family:'Cinzel',serif;
+}
+
+/* CONTACT */
+
+.contact{
+background:linear-gradient(145deg,#111,#050505);
+border-radius:40px;
+padding:70px;
+border:1px solid rgba(255,255,255,0.08);
+}
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:50px;
+}
+
+.contact-info h3{
+font-size:38px;
+margin-bottom:20px;
+font-family:'Cinzel',serif;
+}
+
+.contact-info p{
+color:#ccc;
+line-height:2;
+}
+
+.socials{
+margin-top:25px;
+display:flex;
+gap:15px;
+}
+
+.socials a{
+width:55px;
+height:55px;
+display:flex;
+justify-content:center;
+align-items:center;
+border-radius:50%;
+background:rgba(255,255,255,0.08);
+color:white;
+font-size:20px;
+transition:0.4s;
+text-decoration:none;
+}
+
+.socials a:hover{
+background:#d4af37;
+color:black;
+transform:translateY(-5px);
+}
+
+form input,
+form textarea{
+width:100%;
+padding:18px;
+margin-bottom:20px;
+background:#0d0d0d;
+border:none;
+border-radius:15px;
+color:white;
+}
+
+form textarea{
+height:140px;
+resize:none;
+}
+
+form button{
+padding:16px 35px;
+background:linear-gradient(to right,#d4af37,#fff1b8);
+border:none;
+border-radius:50px;
+font-weight:700;
+cursor:pointer;
+}
+
+/* FOOTER */
+
+footer{
+padding:35px;
+text-align:center;
+color:#777;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero-content h1{
+font-size:45px;
+}
+
+nav ul{
+display:none;
+}
+
+.lightbox img{
+width:95%;
+}
+
+.section-title h2{
+font-size:38px;
+}
+
+.contact{
+padding:40px 25px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+<div class="logo">MSP STONE INTERNATIONAL</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#fountains">Fountains</a></li>
+<li><a href="#washbasin">Washbasins</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>Luxury Marble Fountain & Stone Art</h1>
+
+<p>
+Premium Marble Fountains, Handicrafts, Washbasins &
+Luxury Stone Décor Crafted For Elite Spaces Worldwide
+</p>
+
+<div class="hero-buttons">
+<a href="#fountains" class="btn btn-gold">Explore Collection</a>
+<a href="#contact" class="btn btn-dark">Get Quote</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- FOUNTAIN SECTION -->
+
+<section id="fountains">
+
+<div class="section-title">
+<h2>Luxury Marble Fountains</h2>
+<p>
+Handcrafted premium marble fountains designed for villas,
+gardens, hotels and luxury architecture.
+</p>
+</div>
+
+<div class="grid">
+
+<div class="card" onclick="openLightbox(this)">
+<img src="https://i.imgur.com/oM6b7xK.jpeg">
+<div class="card-content">
+<h3>Royal Garden Fountain</h3>
+</div>
+</div>
+
+<div class="card" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<h3>Luxury Outdoor Fountain</h3>
+</div>
+</div>
+
+<div class="card" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop">
+<div class="card-content">
+<h3>Classic Marble Fountain</h3>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- WASHBASIN SECTION -->
+
+<section id="washbasin">
+
+<div class="section-title">
+<h2>Designer Marble Washbasins</h2>
+<p>
+Luxury bathroom and home washbasins crafted with premium marble finish.
+</p>
+</div>
+
+<div class="wash-grid">
+
+<div class="wash-card" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=1200&auto=format&fit=crop">
+<div class="wash-content">
+<h3>Luxury Home Basin</h3>
+</div>
+</div>
+
+<div class="wash-card" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?q=80&w=1200&auto=format&fit=crop">
+<div class="wash-content">
+<h3>Modern Bathroom Basin</h3>
+</div>
+</div>
+
+<div class="wash-card" onclick="openLightbox(this)">
+<img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1200&auto=format&fit=crop">
+<div class="wash-content">
+<h3>Premium Marble Sink</h3>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="about">
+
+<img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1200&auto=format&fit=crop">
+
+<div>
+
+<h3>Crafting Luxury In Stone</h3>
+
+<p>
+MSP STONE INTERNATIONAL specializes in premium marble fountains,
+handicrafts, sculptures, designer washbasins and custom luxury
+stone creations for homes, villas, resorts and commercial projects.
+</p>
+
+<br>
+
+<p>
+We combine traditional craftsmanship with modern luxury aesthetics
+to deliver world-class marble masterpieces globally.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<div class="contact">
+
+<div class="contact-grid">
+
+<div class="contact-info">
+
+<h3>Contact Us</h3>
+
+<p>
+MSP STONE INTERNATIONAL
+<br><br>
+Premium Marble Export Company
+<br><br>
+📞 +91 91488 95283
+<br><br>
+📧 info@mspstoneinternational.com
+<br><br>
+📍 India
+</p>
+
+<div class="socials">
+
+<a href="https://wa.me/919148895283"><i class="fa-brands fa-whatsapp"></i></a>
+
+<a href="#"><i class="fa-brands fa-instagram"></i></a>
+
+<a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+
+</div>
+
+</div>
+
+<form>
+
+<input type="text" placeholder="Your Name">
+
+<input type="email" placeholder="Email Address">
+
+<textarea placeholder="Your Message"></textarea>
+
+<button type="submit">Send Inquiry</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 MSP STONE INTERNATIONAL — Luxury Marble & Fountain Collection
+</footer>
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
+
+<!-- SCRIPT -->
+
+<script>
+
+gsap.from(".hero-content h1",{
+y:80,
+opacity:0,
+duration:1.4
+});
+
+gsap.from(".hero-content p",{
+y:50,
+opacity:0,
+delay:0.3,
+duration:1.2
+});
+
+function openLightbox(card){
+
+let img = card.querySelector("img").src;
+
+document.getElementById("lightbox").style.display="flex";
+
+document.getElementById("lightbox-img").src=img;
+
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
